@@ -40,4 +40,4 @@ top10_india %>%
 ```
 
 
-![india-compared-to-world](plot/india-world-comparison.png "india-compared-to-world")
+![india-compared-to-world](plots/india-world-comparison.png "india-compared-to-world")
