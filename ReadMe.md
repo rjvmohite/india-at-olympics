@@ -124,4 +124,4 @@ ggplot(df, aes(x = Time, y = Medals, fill = Time)) +
 
 rm(df, India_after, India_before)
 ```
-![india-independence](plots/india-independence.png "india-independence")
+![india-independence](plots/indias-independence.png "india-independence")
