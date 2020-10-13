@@ -77,3 +77,29 @@ ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() +
 Here we can see that Most of India's Gold medals are from Hockey only with 1 singular gold from shooting. Rest all sports have never earned a gold medal for India.
 
 ![india-sportwise](plots/India-sportwise-normalised.png "india-sportwise")
+
+## Hockey at the Olympics
+Seeing India's impressive performance in the sport of hockey one can expect India to be the best hockey team with most medals in the sport. However, a little analysis shows otherwise. India is fourth on the all time tally of medals in the sport of hockey.
+```r
+# Hockey medals by country ----
+tally <- medalists %>% 
+  filter(Sport == 'Hockey') %>% 
+    group_by(Team) %>% 
+      summarise(Total = n()) %>% 
+        arrange(desc(Total)) %>% 
+          top_n(10)
+
+# Data Processing
+tally$Team <- factor(tally$Team) %>% fct_reorder(tally$Total)
+tally
+if_india <- factor(c(0,0,0,1,0,0,0,0,0,0))
+tally <- tally %>% add_column(if_india)
+
+# Charting
+tally %>% 
+ggplot(aes(x = Team, y = Total, fill = if_india )) + theme_linedraw() + 
+  geom_col(show.legend = FALSE) + 
+  geom_text(aes(x = Team, y = Total, label = Total, vjust = -0.4)) +
+  labs(y = "Total Medals", title = "Hockey medals by country")
+```
+![hockey-olympics](plots/hockey-by-country.png "hockey-Olympics")
