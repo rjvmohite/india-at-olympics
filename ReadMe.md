@@ -45,5 +45,31 @@ top10_india %>%
 ## India's performance over the years
 This is how India has performed over the years at the Olympics. As we can see, it has been highly inconsistent throughout, with a peak of medals in the middle of the 20th century and then waning off to lower numbers.
 A better insight can explain this phenomenon when we compare India's performance across various sports. It is seen that hockey has been predominant sport for India's performance in the Olympics and accounts for more almost 90% of the medals India has.
+```r
+# India's Performance over the years ----
+df <- medalists %>% 
+  filter(Team == 'India') %>% 
+    group_by(Year,Medal) %>% 
+      summarise(Total = n())
+df
+df %>% 
+ggplot(aes(x = Year, y = Total, colour = Medal)) + theme_linedraw() + 
+  geom_point() + 
+  labs(y = "Medals", title = "India's performance over the years")
 
-![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
+rm(df)
+
+
+# India's sport-wise performance ----
+colours <- c(Gold = "gold", Silver = "silver", Bronze = "bronze")
+medalists %>% 
+  filter(Team == 'India') %>% 
+    group_by(Sport,Medal) %>% 
+      summarise(Total = n()) %>% 
+ggplot(aes(x = Sport, y = Total, fill = colours)) + theme_linedraw() + 
+  geom_col(position = 'fill') + 
+  # geom_text(aes(label = round(Total/sum(Total),2)), nudge_y = 0.0) +
+  labs(y = "Total Medals", title = "India's performance by sport")
+
+```
+![india-over-the-years](plots/india-performance.png "india-performance")</t>![india-sportwise](plots/India-sportwise.png "india-performance")
