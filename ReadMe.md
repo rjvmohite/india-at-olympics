@@ -61,7 +61,7 @@ ggplot(aes(x = Year, y = Total, colour = Medal)) + theme_linedraw() +
 rm(df)
 
 ```
-![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
+![india-over-the-years](plots/india-performance.png "india-performance")
 
 ### India: Before and After Independence
 In general, countries should perform better after achieving independence (if they were under foreign rule). Let's see how India's performance has aged after it became independent from the United Kingdom.
@@ -87,20 +87,22 @@ rm(df, India_after, India_before)
 As predicted, India has done better after its independence in the Olympics
 
 ## Sportwise analysis
-Here we can see that Most of India's Gold medals are from Hockey only with 1 singular gold from shooting. Rest all sports have never earned a gold medal for India.
+Let's see how our nation has done across the various sports present in the Olympics.
 ```r
 # India's sport-wise performance ----
 medalists %>% 
   filter(Team == 'India') %>% 
     group_by(Sport,Medal) %>% 
       summarise(Total = n()) %>% 
-ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() + 
-  geom_col(position = 'fill') + 
-  # geom_text(aes(label = round(Total/sum(Total),2)), nudge_y = 0.0) +
+ggplot(aes(x = Sport, y = Total,)) + theme_linedraw() + 
+  coord_flip +
+  geom_col() + 
   labs(y = "Total Medals", title = "India's performance by sport")
 
 ```
-
+![india-sportwise](plots/India-sportwise.png "india-performance")
+We can see that almost 90% of India's Olympic medals tally can be attributed to the sport of hockey.
+Also, below, we can see that most of India's gold medals are from hockey, with only 1 other singular gold from shooting. Rest all sports have never earned a gold medal for India.
 ![india-sportwise](plots/India-sportwise-normalised.png "india-sportwise")
 
 ### Hockey at the Olympics
