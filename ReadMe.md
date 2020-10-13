@@ -41,6 +41,7 @@ top10_india %>%
 
 
 ![india-compared-to-world](plots/india-world-comparison.png "india-compared-to-world")
+It is evident that India's performance is not even comparable to those in the top 10 at the Olympics.
 
 ## India's performance over the years
 This is how India has performed over the years at the Olympics. As we can see, it has been highly inconsistent throughout, with a peak of medals in the middle of the 20th century and then waning off to lower numbers.
@@ -73,12 +74,35 @@ ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() +
 ```
 ![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
 
-### Sportwise analysis
+### India: Before and After Independence
+In general, countries should perform better after achieving independence (if they were under foreign rule). Let's see how India's performance has aged after it became independent from the United Kingdom.
+```r
+India_before <- medalists %>% 
+                  filter(Team == 'India', Year < 1947) %>% 
+                    summarise(Total = n())
+India_after <- medalists %>% 
+                filter(Team == 'India', Year > 1947) %>% 
+                  summarise(Total = n())
+df <- data.frame(Time = c('Before Independence','After Independence'),
+                 Medals = c(India_before[1,1], India_after[1,1]))
+#Charting
+ggplot(df, aes(x = Time, y = Medals, fill = Time)) + 
+  geom_col(show.legend = F) +
+  coord_cartesian(ylim = c(0,175)) +
+  geom_text(aes(label = Medals),vjust = -0.4)
+  labs(x = '', title = 'India: Before and After Independence')
+
+rm(df, India_after, India_before)
+```
+![india-independence](plots/indias-independence.png "india-independence")
+As predicted, India has done better after its independence in the Olympics
+
+## Sportwise analysis
 Here we can see that Most of India's Gold medals are from Hockey only with 1 singular gold from shooting. Rest all sports have never earned a gold medal for India.
 
 ![india-sportwise](plots/India-sportwise-normalised.png "india-sportwise")
 
-## Hockey at the Olympics
+### Hockey at the Olympics
 Seeing India's impressive performance in the sport of hockey one can expect India to be the best hockey team with most medals in the sport. However, a little analysis shows otherwise. India is fourth on the all time tally of medals in the sport of hockey.
 ```r
 # Hockey medals by country ----
@@ -103,25 +127,4 @@ ggplot(aes(x = Team, y = Total, fill = if_india )) + theme_linedraw() +
   labs(y = "Total Medals", title = "Hockey medals by country")
 ```
 ![hockey-olympics](plots/hockey-by-country.png "hockey-Olympics")
-
-## India: Before and After Independence
-In general, countries should perform better after achieving independence (if they were under foreign rule). Let's see how India's performance has aged after it became independent from the United Kingdom.
-```r
-India_before <- medalists %>% 
-                  filter(Team == 'India', Year < 1947) %>% 
-                    summarise(Total = n())
-India_after <- medalists %>% 
-                filter(Team == 'India', Year > 1947) %>% 
-                  summarise(Total = n())
-df <- data.frame(Time = c('Before Independence','After Independence'),
-                 Medals = c(India_before[1,1], India_after[1,1]))
-#Charting
-ggplot(df, aes(x = Time, y = Medals, fill = Time)) + 
-  geom_col(show.legend = F) +
-  coord_cartesian(ylim = c(0,175)) +
-  geom_text(aes(label = Medals),vjust = -0.4)
-  labs(x = '', title = 'India: Before and After Independence')
-
-rm(df, India_after, India_before)
-```
-![india-independence](plots/indias-independence.png "india-independence")
+This is slightly disappointing that a country whose national game is hockey is not even in the top 3 at the world stage.
