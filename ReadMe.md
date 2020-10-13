@@ -146,3 +146,27 @@ ggplot(aes(x = Sex, y = Total, fill = Sex)) +
 ```
 
 ![india-sexwise](plots/india-sexwise.png "india-sexwise")
+
+As expected, the distribution is heavily skewed towards men performing better than women. However, this bias is bit too strong as compared to some of the top 10 nations and their gender distribution in medals tally.
+
+### Comparing to other nations in the top 10
+```r
+# Comparing to other nations
+top10 <- medalists %>% 
+  group_by(Team) %>% 
+  summarise(Total = n()) %>% 
+  arrange(desc(Total)) %>%
+  top_n(10)
+
+teams <- factor(top10$Team) %>% fct_reorder(top10$Total)
+
+medalists %>% 
+  filter(Team %in% teams) %>% 
+ggplot(aes(x = Team, fill = Sex)) + 
+  geom_bar() +
+  labs(title = "Genderwise performance in top 10 nations")
+
+rm(teams,top10)
+```
+
+![top10-sexwise](plots/top10-sexwise.png "top10")
