@@ -72,4 +72,4 @@ ggplot(aes(x = Sport, y = Total, fill = colours)) + theme_linedraw() +
   labs(y = "Total Medals", title = "India's performance by sport")
 
 ```
-![india-over-the-years](plots/india-performance.png "india-performance")</t>![india-sportwise](plots/India-sportwise.png "india-performance")
+![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
