@@ -103,3 +103,25 @@ ggplot(aes(x = Team, y = Total, fill = if_india )) + theme_linedraw() +
   labs(y = "Total Medals", title = "Hockey medals by country")
 ```
 ![hockey-olympics](plots/hockey-by-country.png "hockey-Olympics")
+
+## India: Before and After Independence
+In general, countries should perform better after achieving independence (if they were under foreign rule). Let's see how India's performance has aged after it became independent from the United Kingdom.
+```r
+India_before <- medalists %>% 
+                  filter(Team == 'India', Year < 1947) %>% 
+                    summarise(Total = n())
+India_after <- medalists %>% 
+                filter(Team == 'India', Year > 1947) %>% 
+                  summarise(Total = n())
+df <- data.frame(Time = c('Before Independence','After Independence'),
+                 Medals = c(India_before[1,1], India_after[1,1]))
+#Charting
+ggplot(df, aes(x = Time, y = Medals, fill = Time)) + 
+  geom_col(show.legend = F) +
+  coord_cartesian(ylim = c(0,175)) +
+  geom_text(aes(label = Medals),vjust = -0.4)
+  labs(x = '', title = 'India: Before and After Independence')
+
+rm(df, India_after, India_before)
+```
+![india-independence](plots/india-independence.png "india-independence")
