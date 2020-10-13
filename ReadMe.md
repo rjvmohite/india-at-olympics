@@ -60,17 +60,6 @@ ggplot(aes(x = Year, y = Total, colour = Medal)) + theme_linedraw() +
 
 rm(df)
 
-
-# India's sport-wise performance ----
-medalists %>% 
-  filter(Team == 'India') %>% 
-    group_by(Sport,Medal) %>% 
-      summarise(Total = n()) %>% 
-ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() + 
-  geom_col(position = 'fill') + 
-  # geom_text(aes(label = round(Total/sum(Total),2)), nudge_y = 0.0) +
-  labs(y = "Total Medals", title = "India's performance by sport")
-
 ```
 ![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
 
@@ -99,6 +88,18 @@ As predicted, India has done better after its independence in the Olympics
 
 ## Sportwise analysis
 Here we can see that Most of India's Gold medals are from Hockey only with 1 singular gold from shooting. Rest all sports have never earned a gold medal for India.
+```r
+# India's sport-wise performance ----
+medalists %>% 
+  filter(Team == 'India') %>% 
+    group_by(Sport,Medal) %>% 
+      summarise(Total = n()) %>% 
+ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() + 
+  geom_col(position = 'fill') + 
+  # geom_text(aes(label = round(Total/sum(Total),2)), nudge_y = 0.0) +
+  labs(y = "Total Medals", title = "India's performance by sport")
+
+```
 
 ![india-sportwise](plots/India-sportwise-normalised.png "india-sportwise")
 
