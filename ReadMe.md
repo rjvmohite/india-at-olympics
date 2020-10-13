@@ -41,3 +41,9 @@ top10_india %>%
 
 
 ![india-compared-to-world](plots/india-world-comparison.png "india-compared-to-world")
+
+## India's performance over the years
+This is how India has performed over the years at the Olympics. As we can see, it has been highly inconsistent throughout, with a peak of medals in the middle of the 20th century and then waning off to lower numbers.
+A better insight can explain this phenomenon when we compare India's performance across various sports. It is seen that hockey has been predominant sport for India's performance in the Olympics and accounts for more almost 90% of the medals India has.
+
+![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/india-sportwise.png "india-performance")
