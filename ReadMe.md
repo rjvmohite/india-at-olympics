@@ -132,7 +132,7 @@ ggplot(aes(x = Team, y = Total, fill = if_india )) + theme_linedraw() +
 ![hockey-olympics](plots/hockey-by-country.png "hockey-Olympics")
 This is slightly disappointing that a country whose national game is hockey is not even in the top 3 at the world stage.
 
-## Comparison of performance based of gender
+## Comparison of performance based on gender
 It wouldn't be surprising to find a number more skewed towards the male gender due to historical predominance of male participants, however, having said that One can always compare the ratio to other nations to get a bigger picture.
 ```r
 medalists %>% 
