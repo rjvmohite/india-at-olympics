@@ -61,12 +61,11 @@ rm(df)
 
 
 # India's sport-wise performance ----
-colours <- c(Gold = "gold", Silver = "silver", Bronze = "bronze")
 medalists %>% 
   filter(Team == 'India') %>% 
     group_by(Sport,Medal) %>% 
       summarise(Total = n()) %>% 
-ggplot(aes(x = Sport, y = Total, fill = colours)) + theme_linedraw() + 
+ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() + 
   geom_col(position = 'fill') + 
   # geom_text(aes(label = round(Total/sum(Total),2)), nudge_y = 0.0) +
   labs(y = "Total Medals", title = "India's performance by sport")
