@@ -71,3 +71,9 @@ ggplot(aes(x = Sport, y = Total, fill = Medal)) + theme_linedraw() +
   labs(y = "Total Medals", title = "India's performance by sport")
 
 ```
+![india-over-the-years](plots/india-performance.png "india-performance") ![india-sportwise](plots/India-sportwise.png "india-performance")
+
+### Sportwise analysis
+Here we can see that Most of India's Gold medals are from Hockey only with 1 singular gold from shooting. Rest all sports have never earned a gold medal for India.
+
+![india-sportwise](plots/India-sportwise-normalised.png "india-sportwise")
